@@ -61,7 +61,7 @@ class Solution {
             while (i<j){
                 //计算 三数之和
                 int sum =nums[k]+nums[i]+nums[j];
-                //如果大于零 说明i需要往右挪动 反之亦然
+                //如果小于零 说明i需要往右挪动 反之亦然
                 if (sum<0){
                     while (i<j&&nums[i]==nums[++i]);
                 }else  if (sum>0){
