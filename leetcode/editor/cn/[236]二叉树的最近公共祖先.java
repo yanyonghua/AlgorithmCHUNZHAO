@@ -46,7 +46,10 @@
  * }
  */
 class Solution {
-   /* TreeNode res=null;
+    /**
+     * 方法二 深度优先遍历 ，后序遍历
+     */
+    TreeNode res=null;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         dsf(root,p,q);
         return res;
@@ -61,9 +64,9 @@ class Solution {
             res =root;
         }
         return left || right || (root.val==p.val||root.val== q.val);
-    }*/
-    // 这个好
+    }
 
+    // 这个好
     /**
      * 解答成功:
      * 		执行耗时:7 ms,击败了99.53% 的Java用户
@@ -71,7 +74,7 @@ class Solution {
      * 时间复杂度 O(N) ： 其中 NN 为二叉树节点数；最差情况下，需要递归遍历树的所有节点。
      * 空间复杂度 O(N) ： 最差情况下，递归深度达到 N ，系统使用 O(N) 大小的额外空间。
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    /*public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         //当root == null 或者与 目标节点相同时返回
         if(root ==null || root == p ||root ==q)return root;
         //递归左右两边的数
@@ -84,7 +87,7 @@ class Solution {
         // left 不为空说明在 左边
         if (right == null) return left;
         return root;//同时不为空说明这个 就是最近公共祖先
-    }
+    }*/
 
 
 }

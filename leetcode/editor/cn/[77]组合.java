@@ -21,6 +21,24 @@ import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    List<List<Integer>> res =new ArrayList<>();
+    public List<List<Integer>> combine(int n, int k) {
+        getCombine(n,k,1,new ArrayList<>());
+        return res;
+    }
+    private void getCombine(int n , int k , int start,List<Integer> list){
+        if (k == 0){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = start ; i < n -k +1 ; i++){
+            list.add(i);
+            getCombine(n, k-1, i+1, list);
+            list.remove(list.size() -1);
+        }
+
+    }
+
     /**
      * 解答成功:
      * 		执行耗时:1 ms,击败了100.00% 的Java用户
@@ -29,7 +47,7 @@ class Solution {
      * 	空间复杂度o（n）
      */
     // 回溯与剪枝
-    List<List<Integer>> res =new ArrayList<>();
+   /* List<List<Integer>> res =new ArrayList<>();
     public List<List<Integer>> combine(int n, int k) {
         // 题目上表示 这边是从1开始的
         getCombine(n,k,1,new ArrayList<>());
@@ -37,6 +55,7 @@ class Solution {
     }
     private void getCombine(int n ,int k, int start ,List<Integer> list){
         if (k == 0){
+        //k减到0时就结束了
             res.add(new ArrayList<>(list));
             return;
         }
@@ -45,9 +64,10 @@ class Solution {
             list.add(i);
             //k已经减小了 所以外层循环就直接-k就行了
             // 开始循环的条件前面的i 已经用过了 所以+1就行了
+             //k 上一层已经用过了 ，下一层就不需要那么多了
             getCombine(n, k-1, i+1, list);
             list.remove(list.size()-1);
         }
-    }
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)
