@@ -22,6 +22,31 @@ import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res =new ArrayList<>();
+        List<Integer> out =new ArrayList<>();
+        for (int num : nums) {
+            out.add(num);
+        }
+        int n = nums.length;
+        backtrack(n,out,res,0);
+        return res;
+    }
+
+    private void backtrack(int n, List<Integer> out, List<List<Integer>> res, int first) {
+        if (n==first){
+            res.add(new ArrayList<>(out));
+            return;
+        }
+
+        for (int i = first; i < n; i++) {
+            Collections.swap(out,first,i);
+            backtrack(n, out, res, first+1);
+            Collections.swap(out,first,i);
+        }
+
+    }
     /**
      * 解答成功:
      * 		执行耗时:1 ms,击败了96.96% 的Java用户
@@ -29,7 +54,7 @@ class Solution {
      * 时间复杂度：O（n*n!）
      * 空间复杂度：O(n)
      */
-    public List<List<Integer>> permute(int[] nums) {
+   /* public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res =new ArrayList<>();
         List<Integer> out = new ArrayList<>();
         // 先加进来 ，不在添加元素
@@ -45,6 +70,7 @@ class Solution {
             res.add(new ArrayList<>(out));
             return;
         }
+        //此处需要从first 因为前面已经排序过了
         for (int i = first; i < n; i++) {
             //维护动态数组 交换元素
             Collections.swap(out,first,i);
@@ -53,6 +79,6 @@ class Solution {
             // 恢复到原来的状态
             Collections.swap(out,first,i);
         }
-    }
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -34,17 +34,41 @@ import java.util.Stack;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public boolean verifyPostorder(int[] postorder) {
         Stack<Integer> stack =new Stack<>();
-        int root = Integer.MAX_VALUE;
-        for (int i = postorder.length -1; i>= 0 ; i--) {
-            if (postorder[i] > root) return false;
-            while (!stack.isEmpty()&& stack.peek()> postorder[i]){
+        int root =Integer.MAX_VALUE;
+        for (int i = postorder.length - 1; i >= 0; i--) {
+            if (postorder[i] >root)return false;
+            while (!stack.isEmpty()&& stack.peek()>postorder[i]){
                 root = stack.pop();
             }
-            stack.add(postorder[i]);
+            stack.push(postorder[i]);
         }
         return true;
     }
+    /**
+     * 解答成功:
+     * 			执行耗时:1 ms,击败了24.08% 的Java用户
+     * 			内存消耗:36.1 MB,击败了15.39% 的Java用户
+     *
+     */
+    /*
+    public boolean verifyPostorder(int[] postorder) {
+        //后序遍历 左右跟
+        Stack<Integer> stack =new Stack<>();
+        int root = Integer.MAX_VALUE;
+        for (int i = postorder.length -1; i>= 0 ; i--) {
+            //一般是跟最大的
+            if (postorder[i] > root) return false;
+            //前一个数和当前数比较，如果前一个比较大就把前一个抛出
+            while (!stack.isEmpty()&& stack.peek()> postorder[i]){
+                root = stack.pop();
+            }
+            //压入栈 ，add和push一样
+            stack.add(postorder[i]);
+        }
+        return true;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

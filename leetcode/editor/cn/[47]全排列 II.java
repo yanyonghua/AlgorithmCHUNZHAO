@@ -36,6 +36,13 @@ import java.util.*;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /**
+     * 外部使用 vis 来储存已经被访问过的元素
+     *解答成功:
+     * 			执行耗时:1 ms,击败了99.99% 的Java用户
+     * 			内存消耗:39.3 MB,击败了34.90% 的Java用户
+     *
+     */
     boolean[] vis;
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> ans =new ArrayList<>();
@@ -64,7 +71,15 @@ class Solution {
         }
 
     }
-   /* Set<List<Integer>> set =new HashSet<>();
+
+    /**
+     * 根据全排列 暴力法
+     * 解答成功:
+     * 			执行耗时:22 ms,击败了15.04% 的Java用户
+     * 			内存消耗:39.4 MB,击败了13.37% 的Java用户
+     *
+     */
+    /*Set<List<Integer>> set =new HashSet<>();
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> res =new ArrayList<>();
         List<Integer> out = new ArrayList<>();

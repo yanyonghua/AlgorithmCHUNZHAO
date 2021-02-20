@@ -37,8 +37,27 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    /**
+     * 动态规划
+     * 解答成功:
+     * 			执行耗时:2 ms,击败了72.86% 的Java用户
+     * 			内存消耗:51.3 MB,击败了22.04% 的Java用户
+     *时间复杂度O(n)，只需要遍历一次。
+     * 空间复杂度：O(1)，只使用了常数个变量。
+     */
     public int maxProfit(int[] prices) {
-
+        int minprice =Integer.MAX_VALUE;
+        int maxprofit=0;
+        for (int i = 0; i < prices.length; i++) {
+            //当 前股价小于最小股价赋值给 minprice
+            if (prices[i] < minprice ){
+                minprice= prices[i];
+                //当前股价减去 最小股价大于最大股价
+            }else if (prices[i] - minprice>maxprofit){
+                maxprofit = prices[i] - minprice;
+            }
+        }
+        return maxprofit;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -27,19 +27,21 @@ import java.util.Stack;
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 class Solution {
+
+
     //方法三 迭代栈
 
     /**
@@ -54,22 +56,26 @@ class Solution {
         Stack<TreeNode> roots =new Stack<TreeNode>();
         int pre =0;
         int in = 0;
+        //用前序遍历来赋值
         TreeNode root =new TreeNode(preorder[pre]);
         TreeNode curt =root;
         roots.push(root);
         pre++;
         while ( pre< preorder.length){
+        //中序遍历来判断 ,如果当前的值等于中序遍历对应的下标就需要进去
             if (curt.val == inorder[in]){
                 while (!roots.isEmpty()&&roots.peek().val == inorder[in]){
                     curt =roots.peek();
                     roots.pop();
                     in++;
                 }
+                //加右边
                 curt.right = new TreeNode(preorder[pre]);
                 curt =curt.right;
                 roots.push(curt);
                 pre++;
             }else {
+            //加左边
                 curt.left = new TreeNode(preorder[pre]);
                 curt =curt.left;
                 roots.push(curt);
@@ -78,7 +84,7 @@ class Solution {
         }
         return root;
     }
-   // 这个速度很慢
+    // 这个速度很慢
     /**
      * 	解答成功:
      * 		执行耗时:8 ms,击败了15.64% 的Java用户
@@ -109,8 +115,6 @@ class Solution {
         }
         return root;
     }*/
-
-
 
 
     //解法一、递归

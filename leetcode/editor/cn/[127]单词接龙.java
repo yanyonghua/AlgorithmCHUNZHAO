@@ -61,62 +61,13 @@ class Solution {
      *
      */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> wordSet = new HashSet<>(wordList);
-        if (wordSet.size() == 0 || !wordSet.contains(endWord)) {
-            return 0;
-        }
-        Set<String> visited = new HashSet<>();
-        Set<String> begin = new HashSet<>();
-        begin.add(beginWord);
-        Set<String> end = new HashSet<>();
-        end.add(endWord);
-        //前面已经加过 一个了
-        int step = 1;
-        while (!begin.isEmpty() && !end.isEmpty()) {
-            //如果begin 比较大的话 需要调换位置，减少下面的循环次数
-            if (begin.size() > end.size()) {
-                Set<String> temp = begin;
-                begin = end;
-                end = temp;
-            }
-            Set<String> newVisited = new HashSet<>();
-            for (String s : begin) {
-                if (changeWordEveryLetter(s, end, visited, wordSet, newVisited)) {
-                    return step + 1;
-                }
-            }
-            begin =newVisited;
-            step++;
-        }
+
 
         return 0;
 
     }
 
-    private boolean changeWordEveryLetter(
-            String s, Set<String> end, Set<String> visited,
-            Set<String> wordSet, Set<String> newVisited) {
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < s.length(); i++) {
-            char origin = chars[i];
-            for (char j = 'a'; j <= 'z'; j++) {
-                if (j == chars[i]) continue;
-                chars[i] = j;
-                String nextWord = String.valueOf(chars);
-                if (wordSet.contains(nextWord)) {
-                    if (end.contains(nextWord)) {
-                        return true;
-                    }
-                    if (!visited.contains(nextWord)) {
-                        newVisited.add(nextWord);
-                        visited.add(nextWord);
-                    }
-                }
-            }
-            chars[i] = origin;
-        }
-        return false;
-    }
+
     /**
      * 	解答成功:
      * 		执行耗时:85 ms,击败了48.92% 的Java用户
