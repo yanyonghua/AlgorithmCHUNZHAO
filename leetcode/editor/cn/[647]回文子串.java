@@ -54,6 +54,8 @@ class Solution {
         }
         return ans;
     }*/
+
+
     public int countSubstrings(String s) {
         //方法二
         int n =s.length();
@@ -84,5 +86,6 @@ class Solution {
 
         return ans;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

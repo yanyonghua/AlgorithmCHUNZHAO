@@ -57,7 +57,15 @@ import java.util.Set;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int leastInterval(char[] tasks, int n) {
+    /**
+     * 时间复杂度：O(|\textit{task}| + |\Sigma|)O(∣task∣+∣Σ∣)，其中 |\Sigma|∣Σ∣
+     * 是数组 \textit{task}task 中出现任务的种类，
+     * 在本题中任务用大写字母表示，因此 |\Sigma|∣Σ∣ 不会超过 2626。
+     *
+     * 空间复杂度：O(|\Sigma|)O(∣Σ∣)。
+     * 构造一个正方形
+     */
+   /* public int leastInterval(char[] tasks, int n) {
         Map<Character,Integer> freq = new HashMap<>();
         //最多的执行次数
         int maxExec =0;
@@ -78,6 +86,28 @@ class Solution {
         //构造一个正方形，长是n+1 宽是 最大执行次数-1（因为最后一行不一定是满的）
         // count 则是是所有最大执行数的个数
         return Math.max((maxExec-1)*(n+1)+ count,tasks.length);
+    }*/
+    public int leastInterval(char[] tasks, int n) {
+        Map<Character,Integer> freq =new HashMap<>();
+        int max =0;
+        for (char task : tasks) {
+          int i=  freq.getOrDefault(task,0)+1;
+          freq.put(task,i);
+          max = Math.max(max,i);
+        }
+
+        int count =0;
+
+      Set<Map.Entry<Character,Integer>> entries = freq.entrySet();
+        for (Map.Entry<Character, Integer> entry : entries) {
+            int value =entry.getValue();
+            if (value ==max){
+                count++;
+            }
+        }
+        return Math.max((max -1)* (n+ 1)+count,tasks.length);
+
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
